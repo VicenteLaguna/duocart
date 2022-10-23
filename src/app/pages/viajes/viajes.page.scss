@@ -1,0 +1,20 @@
+ion-card-header+.card-content-md {
+    padding-top: 0;
+    display: contents;
+}
+ion-row{
+    display: contents;
+}
+ion-item{
+    --ion-background-color:transparent !important;
+    box-shadow: none !important;
+}
+.ion-padding{
+    --ion-background-color:transparent !important;
+    box-shadow: none !important;
+}
+
+
+.login-btn{
+    --ion-color-primary: #012c56;
+}

@@ -1,0 +1,46 @@
+
+ion-item{
+    
+    color:#647b9d;
+    --border-color: #d4d7d8;
+    --highlight-color-focused:#1248a0;
+    --padding-start:0;
+    --inner-padding-end:0;
+
+
+
+    font-size: 12px;
+    
+    ion-input{
+        color: #647b9d;
+    }
+
+    ion-icon {
+        padding-right: 6px;
+        font-size: 18px;
+
+    }
+
+    ion-input:hover{
+        color: #1238a0;
+    }
+}
+
+.sign-btn{
+    --ion-color-primary: #fbb31c;
+}
+
+
+ion-card{
+    --ion-background-color:transparent !important;
+    box-shadow: none !important;
+}
+
+ion-toolbar{
+    box-shadow: none !important;
+    text-align: center;
+    font-weight: 100;
+    color: #012c56;
+    font-family: 'Pacifico', cursive;
+    --background: url(/assets/img/banner.png) no-repeat center/cover fixed;
+  }

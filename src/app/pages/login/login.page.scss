@@ -1,0 +1,243 @@
+
+
+ion-content{
+    --ion-background-color: #E1EAF9 !important
+}
+ion-toolbar{
+    --ion-background-color: transparent;
+    --opacity: 0;
+}
+
+ion-header{
+    position: absolute;
+}
+ion-card{
+    --ion-background-color:transparent;
+    box-shadow: none !important;
+}
+ion-card-title{
+    margin-top: 200px;
+    text-align: center;
+    font-size: 25px;
+    color: #080808;
+    font-weight: 600;
+}
+ion-card-subtitle {
+    text-align: center;
+    font-size: 11px;
+    padding-top: 15px;
+    font-weight: 200;
+    padding-inline: 15px;
+}
+
+ion-item{
+    
+    color:#647b9d;
+    --border-color: #d4d7d8;
+    --highlight-color-focused:#1248a0;
+    --padding-start:35%;
+    --inner-padding-end:54%;
+
+
+
+    font-size: 12px;
+    
+    ion-input{
+        color: rgb(0, 0, 0);
+    }
+
+    ion-icon {
+        color: rgb(0, 0, 0);
+        padding-right: 6px;
+        font-size: 18px;
+
+    }
+
+    ion-input:hover{
+        
+        color: #1238a0;
+    }
+}
+
+.sign-btn-wrap{
+    margin-top: 60px;
+    margin-left: 2%;
+    margin-right: 3%;
+    text-align: center;
+}
+.login-btn{
+    --ion-color-primary: #012c56;
+}
+.sign-btn{
+    --ion-color-primary: #fbb31c;
+}
+
+.text-tag{
+    margin-top: 40px;
+    text-align: center;
+    span{
+        font-size: 13px;
+        font-weight: normal;
+        color: rgb(0, 0, 0);
+    }
+}
+
+.social-btns{
+    margin-top: 20px;
+    text-align: center;
+    ion-button{
+        width:30px;
+        padding-left: 5px !important;
+    }
+}
+
+ion-card{
+    --ion-background-color:transparent !important;
+    box-shadow: none !important;
+}
+
+.ion-card-footer{
+    text-align: center;
+    span{
+        color: #85888d;
+        font-size: 12px;
+        font-weight: 200;
+    }
+
+    button{
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 3px;
+    }
+}
+@media screen and (max-width: 400px){
+    ion-content{
+        --ion-background-color: #E1EAF9 !important
+    }
+    ion-toolbar{
+        --ion-background-color: transparent;
+        --opacity: 0;
+    }
+    
+    ion-header{
+        position: absolute;
+    }
+    ion-card{
+        --ion-background-color:transparent;
+        box-shadow: none !important;
+    }
+    ion-card-title{
+        font-family: 'Pacifico', cursive;
+        margin-top: 0px;
+        text-align: center;
+        font-size: 50px;
+        color: #012c56;
+        font-weight: 400;
+    }
+    ion-card-subtitle {
+        font-family: 'Pacifico', cursive;
+        color: #012c56;
+        text-align: center;
+        font-size: 11px;
+        padding-top: 15px;
+        font-weight: 100;
+        padding-inline: 15px;
+    }
+    
+    ion-item{
+        
+        color:#647b9d;
+        --border-color: #d4d7d8;
+        --highlight-color-focused:#1248a0;
+        --padding-start:0;
+        --inner-padding-end:0;
+    
+    
+    
+        font-size: 15px;
+        font-weight: 300;
+        
+        ion-input{
+            color: #012c56;
+        }
+    
+        ion-icon {
+            padding-right: 6px;
+            font-size: 18px;
+    
+        }
+    
+        ion-input:hover{
+            color: #012c56;
+        }
+    }
+    
+    .sign-btn-wrap{
+        margin-top: 30px;
+        margin-left: 2%;
+        margin-right: -3%;
+        text-align: center;
+    }
+    .login-btn{
+        --ion-color-primary: #012c56;
+    }
+    .sign-btn{
+        --ion-color-primary: #fbb31c;
+    }
+    
+    .text-tag{
+        margin-top: 40px;
+        text-align: center;
+        span{
+            font-size: 13px;
+            font-weight: normal;
+            color: #898585;
+        }
+    }
+    
+    .social-btns{
+        text-align: center;
+        ion-button{
+            width:30px;
+            padding-left: 5px !important;
+        }
+    }
+    
+    ion-card{
+        --ion-background-color:transparent !important;
+        box-shadow: none !important;
+    }
+    
+    .ion-card-footer{
+        
+        display: block;
+        span{
+            color: rgb(0, 0, 0);
+            font-size: 10px;
+            font-weight: 200;
+        }
+    
+        button{
+            background-color: transparent;
+            font-size: 10px;
+            font-weight: 600;
+            padding-left: 3px;
+        }
+    }
+    #container{
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .ion-card-recuperar{
+        color: #012c56 ;
+    }
+    
+
+    
+}

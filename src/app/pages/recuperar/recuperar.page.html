@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperación</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-item>
+    <ion-input placeholder="Ingrese Correo" type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <div>
+    <ion-button expand="full" shape="round" fill="solid" class="sign-btn" (click)="recuperar()" [disabled]="!email.includes('@duocuc.cl')">Recuperar</ion-button>
+  </div>
+
+</ion-card>
+</ion-content>

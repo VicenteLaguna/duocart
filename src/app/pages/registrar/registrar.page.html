@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear cuenta</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <ion-card-header>
+      <ion-label> Completa los siguientes campos </ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="usuario" (ngSubmit)="registrar()">
+        <ion-item>
+          <ion-label position="stacked">Rut</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ingrese rut"
+            formControlName="rut" trim
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nombre completo</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ingrese nombre"
+            formControlName="nom_completo" trim
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ingrese su correo"
+            formControlName="email" trim
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Fecha nacimiento</ion-label>
+          <ion-input
+            type="date"
+            placeholder="Ingrese fecha nacimiento"
+            formControlName="fecha_nac" trim
+          ></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Tipo usuario</ion-label>
+          <ion-select placeholder="Selecciona tipo" formControlName="tipo_usuario">
+            <ion-select-option value="conductor">Conductor</ion-select-option>
+            <ion-select-option value="pasajero">Pasajero</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Ingrese contraseña"
+            formControlName="password"  trim
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Repita Contraseña</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Ingrese nuevamente contraseña"
+            [(ngModel)]="verificar_password"
+            [ngModelOptions]="{standalone: 'true'}"  trim
+          ></ion-input>
+        </ion-item>
+        <ion-button class="sign-btn" type="submit" >REGISTRAR</ion-button>
+        <ion-button class="sign-btn" type="reset" class="login-btn">LIMPIAR</ion-button>
+        
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

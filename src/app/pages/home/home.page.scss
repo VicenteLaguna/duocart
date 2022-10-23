@@ -1,0 +1,18 @@
+ion-toolbar{
+  box-shadow: none !important;
+  text-align: center;
+  font-weight: 200;
+  color: #012c56;
+  font-family: 'Pacifico', cursive;
+  --background: url(/assets/img/banner.png) no-repeat center/cover fixed;
+}
+
+.tabs{
+  --ion-background-color:transparent;
+  ion-tab-button{
+    color: #012c56;
+  }
+}
+img{
+  width: 20%;
+}
