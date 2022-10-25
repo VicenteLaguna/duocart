@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class LoginPage implements OnInit {
 
   //vamos a crear las variables necesarias:
-  usuario = new FormGroup({
+  credenciales = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@(duoc|duocuc|profesor.duoc).(cl)')]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)])
   });
@@ -21,15 +21,15 @@ export class LoginPage implements OnInit {
   constructor(private toastController: ToastController, private router: Router, 
     private usuarioService: UsuarioService, private storage: StorageService) { }
 
-  ngOnInit() {
-    
+   ngOnInit() {
+
   }
   
   //método para ingresar a home:
-  ingresar() {
+  async ingresar() {
     //rescatamos las variables del formulario por separado:
-    var correoValidar = this.usuario.controls.email.value;
-    var claveValidar = this.usuario.controls.password.value;
+    var correoValidar = this.credenciales.controls.email.value;
+    var claveValidar = this.credenciales.controls.password.value;
 
     //rescatamos el usuario con el método login usuario:
     var usuarioLogin = this.usuarioService.loginUsuario(correoValidar, claveValidar);
@@ -43,7 +43,8 @@ export class LoginPage implements OnInit {
       };
 
       //PARA ENVIAR EL DATO QUE ESTA LISTO, SE ANEXA AL ROUTER!
-      this.usuario.reset();
+      let resp = await this.storage.agregar('credenciales',this.credenciales.value);
+      this.credenciales.reset();
       this.router.navigate(['/home/portada'], navigationExtras);
 
     } else {

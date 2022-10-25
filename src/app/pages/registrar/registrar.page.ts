@@ -21,7 +21,6 @@ export class RegistrarPage implements OnInit {
     nom_completo: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@(duocuc|duoc|profesor.duoc).(cl)')]),
     fecha_nac: new FormControl('', Validators.required),
-    semestre: new FormControl('', [Validators.required, Validators.min(1), Validators.max(8)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
     tipo_usuario: new FormControl('', [Validators.required])
     });
@@ -37,11 +36,8 @@ export class RegistrarPage implements OnInit {
     
     //this.usuarios = this.usuarioService.obtenerUsuarios();
   }
-  listar(){
-
-  }
   //método del formulario
-  registrar(){
+  async registrar(){
         //validación de salida para buscar un rut válido.
         if (!this.validaciones.validarRut(this.usuario.controls.rut.value)) {
           alert('Rut incorrecto!');
@@ -59,6 +55,7 @@ export class RegistrarPage implements OnInit {
     }
     this.usuarioService.agregarUsuario(this.usuario.value);
     alert('USUARIO REGISTRADO!');
+    let resp = await this.storage.agregar('usuario',this.usuario.value);
     this.router.navigate(['/login']);
     //this.alumno.reset();
     //this.verificar_password = '';

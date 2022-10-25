@@ -1,6 +1,6 @@
 <ion-content class="card-background-page" padding>
   <div id="container">
-    <form [formGroup]="usuario" (ngSubmit)="ingresar()">
+    <form [formGroup]="credenciales" (ngSubmit)="ingresar()">
       <ion-card class="ion-no-margin">
         <ion-card-header>
           <ion-card-title>
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="sign-btn-wrap">
-          <ion-button type="submit" shape="round" fill="solid" class="sign-btn" [disabled]="!usuario.valid">INGRESAR</ion-button>
+          <ion-button type="submit" shape="round" fill="solid" class="sign-btn" [disabled]="!credenciales.valid">INGRESAR</ion-button>
         </div>
         
 

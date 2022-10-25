@@ -28,7 +28,7 @@ export class StorageService {
    }
   async getDato(key, identificador) {
     this.datos = await this.storage.get(key) || [];
-    this.dato = this.datos.find(persona => persona.rut == identificador);
+    this.dato = this.datos.find(usuario => usuario.rut == identificador);
     return this.dato;
   }
 

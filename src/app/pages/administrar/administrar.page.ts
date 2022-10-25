@@ -90,5 +90,6 @@ export class AdministrarPage implements OnInit {
     await alert.present();
   }
 
+  
 
 }
