@@ -12,19 +12,17 @@ export class UsuarioService {
     {
       rut: '11.111.111-1',
       nom_completo: 'Cristo Rey',
-      email: 'admin@duocuc.cl',
+      email: 'conductor@duocuc.cl',
       fecha_nac: '1990-03-24',
-      semestre: 1,
-      password: 'admin123',
+      password: 'conductor123',
       tipo_usuario: 'conductor'
     },
     {
       rut: '11.111.111-2',
       nom_completo: 'Mortal promedio',
-      email: 'alumno@duocuc.cl',
+      email: 'pasajero@duocuc.cl',
       fecha_nac: '1990-03-24',
-      semestre: 1,
-      password: 'alumno123',
+      password: 'pasajero123',
       tipo_usuario: 'pasajero'
     }
   ];
