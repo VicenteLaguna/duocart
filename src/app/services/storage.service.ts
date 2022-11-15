@@ -12,8 +12,6 @@ export class StorageService {
   constructor(private storage: Storage) {
     storage.create();
    }
-   
-
    //métodos del crud para el storage
    async agregar(key, dato){
     this.dato = await this.storage.get(key)||[];

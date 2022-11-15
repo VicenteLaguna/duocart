@@ -14,8 +14,7 @@ import { StorageService } from 'src/app/services/storage.service';
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilPageRoutingModule,
-    StorageService
+    PerfilPageRoutingModule
   ],
   declarations: [PerfilPage]
 })

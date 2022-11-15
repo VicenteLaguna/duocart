@@ -10,46 +10,64 @@
       <ion-label> Completa los siguientes campos </ion-label>
     </ion-card-header>
     <ion-card-content>
-      <form [formGroup]="usuario" (ngSubmit)="registrar()">
+      <!-- <form [formGroup]="usuario" (ngSubmit)="registrar()"> -->
         <ion-item>
           <ion-label position="stacked">Rut</ion-label>
           <ion-input
+          [(ngModel)]="datos.rut"
             type="text"
             placeholder="Ingrese rut"
-            formControlName="rut" trim
           ></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">Nombre completo</ion-label>
+          <ion-label position="stacked">Nombre</ion-label>
           <ion-input
+          [(ngModel)]="datos.nombre"
             type="text"
             placeholder="Ingrese nombre"
-            formControlName="nom_completo" trim
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Apellido paterno</ion-label>
+          <ion-input
+          [(ngModel)]="datos.p_apellido"
+            type="text"
+            placeholder="Ingrese apellido paterno"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Apellido materno</ion-label>
+          <ion-input
+          [(ngModel)]="datos.s_apellido"
+            type="text"
+            placeholder="Ingrese apellido materno"
           ></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked">Correo</ion-label>
           <ion-input
+          [(ngModel)]="datos.correo"
             type="text"
             placeholder="Ingrese su correo"
-            formControlName="email" trim
           ></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked">Fecha nacimiento</ion-label>
           <ion-input
+          [(ngModel)]="datos.fnac"
             type="date"
             placeholder="Ingrese fecha nacimiento"
-            formControlName="fecha_nac" trim
           ></ion-input>
         </ion-item>
         
         <ion-item>
           <ion-label position="stacked">Tipo usuario</ion-label>
-          <ion-select placeholder="Selecciona tipo" formControlName="tipo_usuario">
+          <ion-select [(ngModel)]="datos.perfil" placeholder="Selecciona tipo">
             <ion-select-option value="conductor">Conductor</ion-select-option>
             <ion-select-option value="pasajero">Pasajero</ion-select-option>
           </ion-select>
@@ -58,9 +76,9 @@
         <ion-item>
           <ion-label position="stacked">Contraseña</ion-label>
           <ion-input
+          [(ngModel)]="datos.password"
             type="password"
             placeholder="Ingrese contraseña"
-            formControlName="password"  trim
           ></ion-input>
         </ion-item>
 
@@ -73,10 +91,10 @@
             [ngModelOptions]="{standalone: 'true'}"  trim
           ></ion-input>
         </ion-item>
-        <ion-button class="sign-btn" type="submit" >REGISTRAR</ion-button>
+        <ion-button class="sign-btn" type="submit" (click)="registrar()" >REGISTRAR</ion-button>
         <ion-button class="sign-btn" type="reset" class="login-btn">LIMPIAR</ion-button>
         
-      </form>
+      <!-- </form> -->
 
     </ion-card-content>
   </ion-card>

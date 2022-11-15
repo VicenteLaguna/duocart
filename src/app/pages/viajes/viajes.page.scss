@@ -18,3 +18,10 @@ ion-item{
 .login-btn{
     --ion-color-primary: #012c56;
 }
+
+ion-item{
+    ion-label{
+        font-size: small;
+        text-align: justify;
+    }
+}

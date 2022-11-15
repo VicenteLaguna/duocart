@@ -13,7 +13,7 @@ import { GeoPage } from './geo.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GeoPageRoutingModule
+    GeoPageRoutingModule,
   ],
   declarations: [GeoPage]
 })

@@ -1,6 +1,6 @@
 <ion-content class="card-background-page" padding>
   <div id="container">
-    <form [formGroup]="credenciales" (ngSubmit)="ingresar()">
+    <!-- <form [formGroup]="credenciales" (ngSubmit)="ingresar()"> -->
       <ion-card class="ion-no-margin">
         <ion-card-header>
           <ion-card-title>
@@ -13,11 +13,11 @@
         <ion-card-content>
         <div class="wrapform">
           <ion-item>
-            <ion-input formControlName="email" type="text" placeholder="Ingrese usuario" ></ion-input>
+            <ion-input [(ngModel)]="credenciales.email" type="text" placeholder="Ingrese correo" ></ion-input>
             <ion-icon name="mail-outline"></ion-icon>
           </ion-item>
           <ion-item>
-            <ion-input formControlName="password" type="password" placeholder="Ingrese contraseña" ></ion-input>
+            <ion-input [(ngModel)]="credenciales.password" type="password" placeholder="Ingrese contraseña" ></ion-input>
             <ion-icon name="lock-closed"></ion-icon>
           </ion-item>
           <div class="ion-card-footer">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="sign-btn-wrap">
-          <ion-button type="submit" shape="round" fill="solid" class="sign-btn" [disabled]="!credenciales.valid">INGRESAR</ion-button>
+          <ion-button (click)="login()" shape="round" fill="solid" class="sign-btn">INGRESAR</ion-button>
         </div>
         
 
@@ -45,7 +45,7 @@
         </ion-card-content>
 
       </ion-card>
-   </form>
+   <!-- </form> -->
   <div class="ion-card-footer">
     <span>No tienes una cuenta? </span><button class="btn-menu" routerLink='/registrar' class="ion-no padding"> Regístrate</button>
   </div>

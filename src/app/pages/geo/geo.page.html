@@ -20,29 +20,28 @@
                 <ion-content class="ion-padding">
                     <ion-list>
                         <ion-item>
-                            <ion-label position="stacked">Hora de salida</ion-label>
-                            <ion-input type="text" placeholder="Hora de salida"></ion-input>
+                            <ion-label  position="stacked">Hora de salida</ion-label>
+                            <ion-input [(ngModel)]="tarifa.hora_salida" type="time" placeholder="Hora de salida"></ion-input>
                           </ion-item>
                         <ion-item>
                             <ion-label position="stacked">Capacidad disponible</ion-label>
-                            <ion-select placeholder="Selecciona asientos">
+                            <ion-select [(ngModel)]="tarifa.puestos_disp" placeholder="Selecciona asientos">
                               <ion-select-option >1</ion-select-option>
                               <ion-select-option >2</ion-select-option>
                               <ion-select-option >3</ion-select-option>
                             </ion-select>
                           </ion-item>
                           <ion-item>
-                            <ion-label position="stacked">Valor del viaje</ion-label>
-                            <ion-input type="text" placeholder="Ingrese tarifa"></ion-input>
+                            <ion-label  position="stacked">Valor del viaje</ion-label>
+                            <ion-input [(ngModel)]="tarifa.precio" type="number" placeholder="Ingrese tarifa"></ion-input>
                           </ion-item>
                       </ion-list>
-                      <ion-button class="go-btn" expand="full" shape="round" (click)="setOpen(false)">Aceptar</ion-button>
+                      <ion-button class="go-btn" expand="full" shape="round" (click)="agregarViaje()">Aceptar</ion-button>
                 </ion-content>
               </ng-template>
             </ion-modal>
         </ion-col>
         <ion-col><ion-button class="go-btn" expand="block" (click)="calcularRuta()">Ir</ion-button></ion-col>
     </ion-row> 
-    <div id="indicaciones"></div>
-     
+    <div id="indicaciones"></div>     
 </ion-content>

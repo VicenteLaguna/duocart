@@ -5,6 +5,10 @@ import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ValidacionesService } from 'src/app/services/validaciones.service';
 import { BehaviorSubject } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserI } from 'src/app/models/models';
+import { InteractionService } from 'src/app/services/interaction.service';
 
 
 
@@ -16,49 +20,96 @@ import { BehaviorSubject } from 'rxjs';
 export class RegistrarPage implements OnInit {
 
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
-  usuario = new FormGroup({
-    rut: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]')]),
-    nom_completo: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@(duocuc|duoc|profesor.duoc).(cl)')]),
-    fecha_nac: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
-    tipo_usuario: new FormControl('', [Validators.required])
-    });
+  // usuario = new FormGroup({
+  //   uid: new FormControl(''),
+  //   rut: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]')]),
+  //   nom_completo: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  //   email: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@(duocuc|duoc|profesor.duoc).(cl)')]),
+  //   fecha_nac: new FormControl('', Validators.required),
+  //   password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
+  //   tipo_usuario: new FormControl('', [Validators.required])
+  //   });
+  datos: UserI ={
+    rut: null,
+    nombre: null,
+    p_apellido: null,
+    s_apellido: null,
+    correo: null,
+    fnac: null,   
+    uid: null,
+    password: null,
+    perfil: null
+  }
 
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   usuarios: any[] = [];
   verificar_password: string;
   isAuthenticated = new BehaviorSubject(false);
 
-  constructor(private usuarioService: UsuarioService,private validaciones: ValidacionesService, private router: Router, private storage:StorageService) { }
+  constructor(private fire: FirebaseService, 
+    private usuarioService: UsuarioService,
+    private validaciones: ValidacionesService, 
+    private router: Router, 
+    private storage:StorageService, 
+    private auth:AuthService,
+    private interaction: InteractionService) { }
 
   ngOnInit() {
     
     //this.usuarios = this.usuarioService.obtenerUsuarios();
   }
   //método del formulario
-  async registrar(){
-        //validación de salida para buscar un rut válido.
-        if (!this.validaciones.validarRut(this.usuario.controls.rut.value)) {
-          alert('Rut incorrecto!');
-          return;
-        }
-        //validación de salida para verificar que persona tenga al menos 17 años.
-        if (!this.validaciones.validarEdadMinima(17, this.usuario.controls.fecha_nac.value)) {
-          alert('Edad mínima 17 años!');
-          return; 
-        }
+  // async registrar(){
+    // if (!this.validaciones.validarRut(this.usuario.controls.rut.value)) {
+    //   alert('Rut incorrecto!');
+    //   return;
+    //   }
+    // if (!this.validaciones.validarEdadMinima(17, this.usuario.controls.fecha_nac.value)) {
+    //   alert('Edad mínima 17 años!');
+    //   return; 
+    //   }
+    // if (this.usuario.controls.password.value != this.verificar_password) {
+    //   alert('CONTRASEÑAS NO COINCIDEN!');
+    //   return;
+    // }
+  //   this.usuarioService.agregarUsuario(this.usuario.value);
+  //   this.fire.agregar('Usuarios',this.usuario.value);
+  //   alert('USUARIO REGISTRADO!');
+  //   this.router.navigate(['/login']);
+  // }
 
-    if (this.usuario.controls.password.value != this.verificar_password) {
-      alert('CONTRASEÑAS NO COINCIDEN!');
+  async registrar(){
+    if (!this.validaciones.validarRut(this.datos.rut)) {
+      this.interaction.presentToast('Rut invalido');
+      return;
+      }
+    if (!this.validaciones.validarEdadMinima(17, this.datos.fnac)) {
+      this.interaction.presentToast('Edad mínima 17 años');
+      return; 
+      }
+    if (this.datos.password != this.verificar_password) {
+      this.interaction.presentToast('Contraseñas no coinciden');
       return;
     }
-    this.usuarioService.agregarUsuario(this.usuario.value);
-    alert('USUARIO REGISTRADO!');
-    let resp = await this.storage.agregar('usuario',this.usuario.value);
-    this.router.navigate(['/login']);
-    //this.alumno.reset();
-    //this.verificar_password = '';
+    this.interaction.presentLoading('Creando usuario...')
+    console.log('usuario',this.datos);
+    const res = await this.auth.registrarUser(this.datos).catch(error =>{
+      this.interaction.closeLoading();
+      this.interaction.presentToast('Error');
+      console.log('error');
+    })
+    if (res){
+      console.log('exito al crear usuario');
+      this.interaction.closeLoading();
+      const path = 'Usuarios';
+      const id = res.user.uid;
+      this.datos.uid = id;
+      this.datos.password = null;
+      await this.fire.createDoc(this.datos,path,id)
+      this.interaction.closeLoading();
+      this.interaction.presentToast('Registrado con éxito');
+      this.router.navigate(['/login']);
+    }
   }
 
   

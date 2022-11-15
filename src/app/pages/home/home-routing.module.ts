@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('../geo/geo.module').then( m => m.GeoPageModule),
       },
       {
-        path: 'perfil',
+        path: 'perfil/:valor',
         loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
       }
     ]

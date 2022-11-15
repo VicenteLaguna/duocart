@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { InteractionService } from 'src/app/services/interaction.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+
 
 
 declare var google;
@@ -12,16 +17,28 @@ declare var google;
 })
 export class GeoPage implements OnInit {
 
+  tarifa = ({
+    conductor:'',
+    hora_salida:'',
+    puestos_disp:'',
+    precio:''
+  })
+  tarifas: any[]= [];
+
+  id_tarifa ='tarifas';
+
   isModalOpen = false;
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
-  usuario: any;
-  cantidad : number;
-
-  constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService,private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute,
+     private usuarioService: UsuarioService,
+     private router: Router, 
+     private storage:StorageService, 
+     private fireService: FirebaseService,
+     private interaction : InteractionService) { }
 
   async ngOnInit() {
     await this.cargarMapa();
@@ -66,7 +83,6 @@ export class GeoPage implements OnInit {
       map: this.map,
       title: 'Ubicacion inicial'
     });
-
   }
 
   obtenerUbicacion(): Promise<any>{
@@ -106,6 +122,18 @@ export class GeoPage implements OnInit {
     });
     this.marker.setPosition(null);
 
+  }
+
+  async registrar(){
+    var respuesta: boolean = await this.storage.agregar(this.id_tarifa, this.tarifa);
+    if (respuesta) {
+      alert('Viaje creado con exito');
+    }
+  }
+
+  agregarViaje(){
+    this.fireService.agregar('viajes',this.tarifa)
+    this.interaction.presentToast('Viaje creado con éxito');
   }
 }
 

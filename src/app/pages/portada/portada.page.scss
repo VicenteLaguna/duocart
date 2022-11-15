@@ -3,8 +3,14 @@ button{
 }
 ion-title{
     font-size: 25px;
-    margin-top: 5%;
-    margin-bottom: 5%;
     text-align: center;
     font-family: 'Lobster';
+}
+ion-card{
+    text-align: center;
+    font-size: xx-small;
+    img{
+        max-width: 80%;
+        text-align: center;
+    }
 }
