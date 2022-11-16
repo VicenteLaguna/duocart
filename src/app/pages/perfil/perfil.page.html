@@ -8,19 +8,23 @@
       </div>
     </div>
   </div>
-  <div class="card-body">
-    <div class="user-meta ion-text-center">
-      <h3 class="playername">{{valor}} </h3>
-      <h5 class="country">Duoc sede Puente Alto</h5>
-      <h6 class="ranking">Anuncios<ion-chip>
+  <ion-card class="card-body" *ngIf="info">
+      <ion-label class="playername">{{info.nombre}} {{info.p_apellido}}</ion-label>
+      <br>
+      <ion-label class="country">Sede: {{info.sede}} </ion-label>
+      <br>
+      <ion-label class="country">Perfil: {{info.perfil}} </ion-label>
+      <br>
+      <ion-label class="country">Correo: {{info.correo}} </ion-label>
+      <br>
+      <ion-label class="ranking">Anuncios<ion-chip>
         <ion-label>2</ion-label>
         </ion-chip>
-      </h6>
-    </div>
-    <ion-button expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
-    <ion-button expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
-  </div>
+      </ion-label>
+  </ion-card>
   <div class="sign-btn-wrap">
-      <ion-button expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
+    <ion-button size="small" expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
+    <ion-button size="small" expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
+    <ion-button size="small" expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
   </div>
 </ion-content>

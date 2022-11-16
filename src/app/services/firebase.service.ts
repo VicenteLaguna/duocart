@@ -15,7 +15,7 @@ export class FirebaseService {
   agregar(coleccion, value){
     //coleccion: nosotros conociamos como KEY de storage, nombre de una tabla..
     try {
-      this.fire.collection(coleccion).add(value);
+      return this.fire.collection(coleccion).add(value);
     } catch (error) {
       console.log('ERROR: ', error)
     }
@@ -87,5 +87,14 @@ export class FirebaseService {
     return this.fire.collection(path).doc<tipo>(id).valueChanges()
   }
 
+
+  
+
+  getCollection<tipo>(path: string){
+
+    const collection = this.fire.collection<tipo>(path);
+    return collection.valueChanges();
+
+  }
 }
 

@@ -19,9 +19,16 @@ ion-item{
     --ion-color-primary: #012c56;
 }
 
-ion-item{
-    ion-label{
-        font-size: small;
-        text-align: justify;
+ion-card{
+    .viajes{
+        text-align: left;
+        color: black;
+        font-weight: bold;
+    }
+    .info_viaje{
+        color: royalblue;
+    }
+    .sign-btn{
+        --ion-color-primary: #012c56;
     }
 }

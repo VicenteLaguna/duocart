@@ -8,5 +8,13 @@ export interface UserI{
     uid: string;
     password: string;
     perfil: 'conductor'|'pasajero'
-    
+    sede: string;
+}
+
+export interface tarifas{
+    uid: string,
+    conductor:string;
+    hora_salida:Date;
+    puestos_disp:number;
+    precio:string
 }

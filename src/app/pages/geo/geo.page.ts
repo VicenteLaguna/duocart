@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { tarifas } from 'src/app/models/models';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,13 +19,14 @@ declare var google;
 })
 export class GeoPage implements OnInit {
 
-  tarifa = ({
-    conductor:'',
-    hora_salida:'',
-    puestos_disp:'',
-    precio:''
-  })
-  tarifas: any[]= [];
+  tarifa: tarifas ={
+    uid:null,
+    conductor:null,
+    hora_salida:null,
+    puestos_disp:null,
+    precio:null
+  }
+  tarifas: tarifas[] =[];
 
   id_tarifa ='tarifas';
 
@@ -38,13 +41,18 @@ export class GeoPage implements OnInit {
      private router: Router, 
      private storage:StorageService, 
      private fireService: FirebaseService,
-     private interaction : InteractionService) { }
+     private interaction : InteractionService,
+     private auth : AuthService) { }
 
   async ngOnInit() {
     await this.cargarMapa();
     this.autocompletado(this.map, this.marker);
+    this.getResultados();
   }
   
+  
+  uid: string = null;
+  info: tarifas = null;
   //VARIABLES PARA EL MAPA:
   latitud: number;
   longitud: number;
@@ -131,9 +139,16 @@ export class GeoPage implements OnInit {
     }
   }
 
-  agregarViaje(){
+  async agregarViaje(){
     this.fireService.agregar('viajes',this.tarifa)
     this.interaction.presentToast('Viaje creado con éxito');
   }
-}
 
+  getResultados(){
+    this.fireService.getCollection<tarifas>('viajes').subscribe(res =>{
+      console.log('esta es la lectura',res);
+      this.tarifas = res;
+    });
+  }
+
+}

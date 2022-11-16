@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
-import { UserI } from '../models/models';
+import { tarifas, UserI } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,6 @@ async getUid(){
   }else{
     return null;
   }
-  }
+}
 }
 

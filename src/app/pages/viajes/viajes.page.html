@@ -6,12 +6,14 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list *ngFor="let viaje of tarifa">
-        <ion-item>
-          <ion-label>Hora salida : {{viaje.hora_salida}} </ion-label>
-          <ion-label>Puestos disponibles : {{viaje.puestos_disp}}</ion-label>
-          <ion-label>Costo del viaje : {{viaje.precio}}</ion-label>
-          <ion-button color="danger">Ver</ion-button>
-        </ion-item>
+        <ion-card class="viajes">
+          <ion-label>Hora salida : </ion-label><ion-label class="info_viaje">{{viaje.hora_salida}} </ion-label>
+          <br>
+          <ion-label>Puestos disponibles : </ion-label><ion-label class="info_viaje">{{viaje.puestos_disp}}</ion-label>
+          <br>
+          <ion-label>Costo del viaje : </ion-label><ion-label class="info_viaje">{{viaje.precio}}</ion-label>
+          <ion-button class="sign-btn" expand="full" >Ver</ion-button>
+        </ion-card>
       </ion-list>
     </ion-card-content>
   </ion-card>

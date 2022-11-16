@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
     if (res){
       console.log('respuesta --',res);
       this.interaction.closeLoading();
-      this.interaction.presentToast('Ingresado con éxito');
+      this.interaction.presentToastTop('Ingresado con éxito','top');
       this.router.navigate(['/home/portada']);
     }
   }

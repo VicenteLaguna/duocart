@@ -38,7 +38,8 @@ export class RegistrarPage implements OnInit {
     fnac: null,   
     uid: null,
     password: null,
-    perfil: null
+    perfil: null,
+    sede: null,
   }
 
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
@@ -107,7 +108,7 @@ export class RegistrarPage implements OnInit {
       this.datos.password = null;
       await this.fire.createDoc(this.datos,path,id)
       this.interaction.closeLoading();
-      this.interaction.presentToast('Registrado con éxito');
+      this.interaction.presentToast('Usuario registrado con éxito!');
       this.router.navigate(['/login']);
     }
   }

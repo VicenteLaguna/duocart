@@ -4,6 +4,16 @@
         <input type="text" id="autocomplete">
     </div>
     <div id="map"></div>
+    <div id="indicaciones"></div>
+    <ion-list *ngFor="let tarifas of tarifas">
+      <ion-card>
+        <ion-label >{{tarifas.hora_salida}} </ion-label>
+        <br>
+        <ion-label></ion-label>
+        <br>
+        <ion-label></ion-label>
+      </ion-card>
+    </ion-list>
     <ion-row>
         <ion-col>
             <ion-button class="sign-btn" expand="block" (click)="setOpen(true)">Opciones</ion-button>
@@ -36,12 +46,12 @@
                             <ion-input [(ngModel)]="tarifa.precio" type="number" placeholder="Ingrese tarifa"></ion-input>
                           </ion-item>
                       </ion-list>
-                      <ion-button class="go-btn" expand="full" shape="round" (click)="agregarViaje()">Aceptar</ion-button>
+                      <ion-button class="go-btn" expand="full" shape="round" (click)="agregarViaje()" >Aceptar</ion-button>
                 </ion-content>
               </ng-template>
             </ion-modal>
         </ion-col>
         <ion-col><ion-button class="go-btn" expand="block" (click)="calcularRuta()">Ir</ion-button></ion-col>
     </ion-row> 
-    <div id="indicaciones"></div>     
+  
 </ion-content>
