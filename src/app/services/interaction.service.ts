@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ export class InteractionService {
   loading : any;
 
   constructor(public toastController: ToastController,
-              public loadingController: LoadingController) { }
+              public loadingController: LoadingController,
+              public alertController: AlertController) { }
 
   async presentToast(mensaje: string){
     const toast = await this.toastController.create({
@@ -62,5 +63,34 @@ async presentToastTop(mensaje: string,position: 'top') {
 
   await toast.present();
 }
+
+async presentAlert(texto: string, subtitulo : string){
+
+  let aceptar = false;
+
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: texto,
+    subHeader: subtitulo,
+    buttons: [{
+      text: 'Si',
+      handler: () => {
+        aceptar = true;
+      }
+    },{
+      text:'No',
+      role: 'cancel',
+      cssClass: 'secondary',
+    }
+  ]
+  });
+  await alert.present();
+  await alert.onDidDismiss();
+  return aceptar
 }
+
+
+
+}
+
 

@@ -8,7 +8,9 @@
 
     .header {
         height: 200px;
-
+        ion-label{
+            text-align: center;
+        }
         .avatar {
             top: 10%;
             width: 160px;
@@ -24,12 +26,21 @@
                 border: 8px solid #9Dc912;
                 background-color: #fff;
             }
+            
         }
     }
 }
 
 .card-body{
+    display: grid;
     padding-top: 5%;
     color: black;
     text-align: center;
+    font-weight: 200;
+    font-size: large;
+    .btn_editar{
+        float: right;
+        color: #012c56;
+        --border-color: black;
+    }
 }

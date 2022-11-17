@@ -87,14 +87,21 @@ export class FirebaseService {
     return this.fire.collection(path).doc<tipo>(id).valueChanges()
   }
 
-
-  
+  getId(){
+    return this.fire.createId();
+  }
 
   getCollection<tipo>(path: string){
-
     const collection = this.fire.collection<tipo>(path);
     return collection.valueChanges();
+  }
 
+  deleteDoc(path: string, id:string){
+    return this.fire.collection(path).doc(id).delete();
+  }
+
+  updateDoc(path: string, id: string, data: any){
+    return this.fire.collection(path).doc(id).update(data);
   }
 }
 

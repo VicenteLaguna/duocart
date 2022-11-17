@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { tarifas } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -20,7 +21,7 @@ declare var google;
 export class GeoPage implements OnInit {
 
   tarifa: tarifas ={
-    uid:null,
+    id:this.fireService.getId(),
     conductor:null,
     hora_salida:null,
     puestos_disp:null,
@@ -151,4 +152,42 @@ export class GeoPage implements OnInit {
     });
   }
 
+  loadViaje(){
+    const path='viajes';
+    this.fireService.getCollection<tarifas>(path).subscribe(res =>{
+      if (res){
+        this.tarifas = res;
+      }
+    })
+  }
+
+  async guardar(){
+    await this.interaction.presentLoading('Creando...');
+    console.log('guardar',this.tarifa);
+    const path = 'viajes';
+    await this.fireService.createDoc(this.tarifa, path,this.tarifa.id);
+    this.interaction.presentToast('Viaje creado!');
+    this.interaction.closeLoading();
+    this.isModalOpen = false;
+  }
+
+  editar(tarifa: tarifas){
+    this.isModalOpen=true;
+    console.log('editar --', tarifa);
+    this.tarifa = tarifa;
+  }
+
+  async eliminar(tarifa: tarifas){
+    const res = await this.interaction.presentAlert('Alerta','¿Deseas cancelar el viaje?');
+    console.log('res --', res);
+    if(res){
+      const path = 'viajes';
+      await this.interaction.presentLoading('Cancelando...');
+      this.fireService.deleteDoc(path,this.tarifa.id);
+      this.isModalOpen=false;
+      this.interaction.closeLoading();
+      this.interaction.presentToast('Viaje cancelado');
+
+    }
+  }
 }

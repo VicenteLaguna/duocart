@@ -7,7 +7,7 @@ import { ValidacionesService } from 'src/app/services/validaciones.service';
 import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserI } from 'src/app/models/models';
+import { Sedes, UserI } from 'src/app/models/models';
 import { InteractionService } from 'src/app/services/interaction.service';
 
 
@@ -29,6 +29,9 @@ export class RegistrarPage implements OnInit {
   //   password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
   //   tipo_usuario: new FormControl('', [Validators.required])
   //   });
+
+  sedes = Sedes;
+
   datos: UserI ={
     rut: null,
     nombre: null,

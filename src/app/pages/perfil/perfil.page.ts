@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { UserI } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -17,7 +18,8 @@ export class PerfilPage implements OnInit {
   constructor(private router: Router, 
     private auth: AuthService,
     private interaction : InteractionService,
-    private fire : FirebaseService) { }
+    private fire : FirebaseService,
+    private alertController : AlertController) { }
 
     uid: string = null;
     info: UserI = null;
@@ -27,7 +29,6 @@ export class PerfilPage implements OnInit {
     this.getUid();
     this.auth.stateUser().subscribe( res =>{
       console.log('en perfil - estado autenticacion --', res);
-      
     })
   }
 
@@ -53,13 +54,57 @@ export class PerfilPage implements OnInit {
       })
     }
 
-  logout(){
-    this.interaction.timedLoad('Cerrando sersión');
+  async logout(){
+    await this.interaction.presentLoading('Cerrando sersión');
     this.auth.logout();
     this.router.navigate(['/login']);
+    this.interaction.closeLoading();
   }
 
  
+  async saveAtributo(name: string, input: any){
+    await this.interaction.presentLoading('Actualizando...');
+    const path = 'Usuarios'
+    const id = this.uid;
+    const updateDoc={
+    };
+    updateDoc[name] = input;
+    this.fire.updateDoc(path,id,updateDoc).then(() =>{
+      this.interaction.presentToast('actualizado con exito')
+      this.interaction.closeLoading();
+    })
+  }
 
-
+  async editAtributo(name: string) {
+    const alert = await this.alertController.create({
+      header: 'Editar '+ name,
+      buttons: [{
+        text: 'Confirmar',
+        handler: (ev) => {
+          console.log('Confirm ok--', ev);
+          this.saveAtributo(name,ev[name])
+        }
+      },{
+        text:'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler:()=>{
+          console.log('cancel');
+          
+        }
+      }
+    ],
+      inputs: [
+        {
+          name,
+          placeholder: 'Ingresa tu '+ name,
+          attributes: {
+            maxlength: 30,
+          },
+        }
+      ],
+    });
+  
+    await alert.present();
+  }
 }
