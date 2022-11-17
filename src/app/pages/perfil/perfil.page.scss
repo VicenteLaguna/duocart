@@ -32,15 +32,22 @@
 }
 
 .card-body{
+    padding-left: 4%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: grid;
     padding-top: 5%;
     color: black;
-    text-align: center;
-    font-weight: 200;
+    text-align: justify;
+    font-weight: bold;
     font-size: large;
     .btn_editar{
         float: right;
         color: #012c56;
         --border-color: black;
+    }
+    .misDatos{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-decoration: underine;
+        text-align: center;
     }
 }

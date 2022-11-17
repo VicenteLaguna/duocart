@@ -1,4 +1,21 @@
 
+.ion-no-margin{
+    .logo{
+            ion-row{
+                ion-img{
+                    margin-bottom: -125px;
+                    padding-bottom:42%;
+                }
+                .ion-text-lowercase{
+                    color: #012c56;
+                    padding-left: 5%;
+                    font-family: 'Pacifico', cursive;
+                    padding-bottom: 30%;
+                    font-size: medium;
+                } 
+            }
+    }
+}
 
 ion-content{
     --ion-background-color: #E1EAF9 !important
@@ -69,7 +86,10 @@ ion-item{
     --ion-color-primary: #012c56;
 }
 .sign-btn{
+    text-align: center;
     --ion-color-primary: #fbb31c;
+    width: 250px;
+    margin-right: 34px;
 }
 
 .text-tag{
@@ -214,15 +234,16 @@ ion-card{
         display: block;
         span{
             color: rgb(0, 0, 0);
-            font-size: 10px;
+            font-size: 13px;
             font-weight: 200;
         }
     
         button{
             background-color: transparent;
-            font-size: 10px;
+            font-size: 15px;
             font-weight: 600;
             padding-left: 3px;
+            text-decoration: underline;
         }
     }
     #container{

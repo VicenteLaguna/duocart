@@ -9,7 +9,9 @@
     </div>
   </div>
   <ion-card class="card-body" *ngIf="info">
-      <ion-label class="playername">Nombre: {{info.nombre}} {{info.p_apellido}}<ion-button (click)="editAtributo('nombre')" class="btn_editar" size="small" fill="outline"><ion-icon name="create-outline"></ion-icon></ion-button></ion-label>
+      <ion-label class="misDatos">Mis datos</ion-label>
+      <br>
+      <ion-label class="playername">Nombre: {{info.nombre}} {{info.p_apellido}}</ion-label>
       <br>
       <ion-label class="country">Correo: {{info.correo}} </ion-label>
       <br>
@@ -19,12 +21,6 @@
       <br>
       <ion-label class="country">Fecha de nacimiento: {{info.fnac}} </ion-label>
       <br>
-
-      <ion-label class="ranking">Anuncios<ion-chip>
-
-        <ion-label>2</ion-label>
-        </ion-chip>
-      </ion-label>
   </ion-card>
   <div class="sign-btn-wrap">
     <ion-button size="small" expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
