@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { UserI } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -14,12 +15,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class PerfilPage implements OnInit {
   valor: any;
+  newImage='';
 
   constructor(private router: Router, 
     private auth: AuthService,
     private interaction : InteractionService,
     private fire : FirebaseService,
-    private alertController : AlertController) { }
+    private alertController : AlertController,
+    public fireStorageService: FirestorageService) { }
 
     uid: string = null;
     info: UserI = null;
@@ -107,4 +110,7 @@ export class PerfilPage implements OnInit {
   
     await alert.present();
   }
+
+
+
 }

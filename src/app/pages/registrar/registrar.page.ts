@@ -9,6 +9,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Sedes, UserI } from 'src/app/models/models';
 import { InteractionService } from 'src/app/services/interaction.service';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 
 
 
@@ -31,8 +32,10 @@ export class RegistrarPage implements OnInit {
   //   });
 
   sedes = Sedes;
-
+  newImage = '';
+  newFile = '';
   datos: UserI ={
+    image: null,
     rut: null,
     nombre: null,
     p_apellido: null,
@@ -56,7 +59,8 @@ export class RegistrarPage implements OnInit {
     private router: Router, 
     private storage:StorageService, 
     private auth:AuthService,
-    private interaction: InteractionService) { }
+    private interaction: InteractionService,
+    public fireStorageService: FirestorageService) { }
 
   ngOnInit() {
     
@@ -83,6 +87,12 @@ export class RegistrarPage implements OnInit {
   // }
 
   async registrar(){
+    this.interaction.presentLoading('Creando usuario...')
+    const path='Fotos'
+    const name = 'prueba';
+    const resp = await this.fireStorageService.uploadImage(this.newFile,path,name);
+    this.datos.image = resp;
+
     if (!this.validaciones.validarRut(this.datos.rut)) {
       this.interaction.presentToast('Rut invalido');
       return;
@@ -95,7 +105,6 @@ export class RegistrarPage implements OnInit {
       this.interaction.presentToast('Contraseñas no coinciden');
       return;
     }
-    this.interaction.presentLoading('Creando usuario...')
     console.log('usuario',this.datos);
     const res = await this.auth.registrarUser(this.datos).catch(error =>{
       this.interaction.closeLoading();
@@ -117,5 +126,18 @@ export class RegistrarPage implements OnInit {
   }
 
   
+
+  async newImageUpload(event: any){
+    console.log(event);
+    if(event.target.files && event.target.files[0]){
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image) =>{
+        this.newImage = image.target.result as string;
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
 
 }

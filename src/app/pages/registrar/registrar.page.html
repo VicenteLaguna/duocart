@@ -7,97 +7,113 @@
 <ion-content>
   <ion-card class="ion-no-margin">
     <ion-card-header>
-      <ion-label> Completa los siguientes campos </ion-label>
+      <ion-label class="titulo"> Completa los siguientes campos </ion-label>
     </ion-card-header>
     <ion-card-content>
+      <div class="avatar">
+        <ion-avatar class="avatar">
+            <ion-button size="small" class="badge" color="warning">
+              <label for="file-upload">
+                <ion-icon name="create-outline"></ion-icon>
+              </label>
+              <input (change)="newImageUpload($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
+            </ion-button>
+            <ion-img *ngIf="datos.image==null" src="assets/img/EgAI3HLXsAAsWVb.jpg"></ion-img>
+        </ion-avatar>
+        <ion-avatar class="avatar_2">
+          <ion-img class="profile_img" [src]="newImage"></ion-img>
+        </ion-avatar>
+      </div>
       <!-- <form [formGroup]="usuario" (ngSubmit)="registrar()"> -->
-        <ion-item>
-          <ion-label position="stacked">Rut</ion-label>
-          <ion-input
-          [(ngModel)]="datos.rut"
-            type="text"
-            placeholder="Ingrese rut"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Nombre</ion-label>
-          <ion-input
-          [(ngModel)]="datos.nombre"
-            type="text"
-            placeholder="Ingrese nombre"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Apellido paterno</ion-label>
-          <ion-input
-          [(ngModel)]="datos.p_apellido"
-            type="text"
-            placeholder="Ingrese apellido paterno"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Apellido materno</ion-label>
-          <ion-input
-          [(ngModel)]="datos.s_apellido"
-            type="text"
-            placeholder="Ingrese apellido materno"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Correo</ion-label>
-          <ion-input
-          [(ngModel)]="datos.correo"
-            type="text"
-            placeholder="Ingrese su correo"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Fecha nacimiento</ion-label>
-          <ion-input
-          [(ngModel)]="datos.fnac"
-            type="date"
-            placeholder="Ingrese fecha nacimiento"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Sede</ion-label>
-          <ion-select [(ngModel)]="datos.sede" placeholder="Selecciona sede">
-            <ion-select-option *ngFor="let sede of sedes" [value]="sede">{{sede}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Tipo usuario</ion-label>
-          <ion-select [(ngModel)]="datos.perfil" placeholder="Selecciona tipo">
-            <ion-select-option value="conductor">Conductor</ion-select-option>
-            <ion-select-option value="pasajero">Pasajero</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input
-          [(ngModel)]="datos.password"
-            type="password"
-            placeholder="Ingrese contraseña"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Repita Contraseña</ion-label>
-          <ion-input
-            type="password"
-            placeholder="Ingrese nuevamente contraseña"
-            [(ngModel)]="verificar_password"
-            [ngModelOptions]="{standalone: 'true'}"  trim
-          ></ion-input>
-        </ion-item>
+        <ion-list class="formulario">
+          <ion-item>
+            <ion-label position="stacked">Rut</ion-label>
+            <ion-input
+            [(ngModel)]="datos.rut"
+              type="text"
+              placeholder="Ingrese rut"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input
+            [(ngModel)]="datos.nombre"
+              type="text"
+              placeholder="Ingrese nombre"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Apellido paterno</ion-label>
+            <ion-input
+            [(ngModel)]="datos.p_apellido"
+              type="text"
+              placeholder="Ingrese apellido paterno"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Apellido materno</ion-label>
+            <ion-input
+            [(ngModel)]="datos.s_apellido"
+              type="text"
+              placeholder="Ingrese apellido materno"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Correo</ion-label>
+            <ion-input
+            [(ngModel)]="datos.correo"
+              type="text"
+              placeholder="Ingrese su correo"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Fecha nacimiento</ion-label>
+            <ion-input
+            [(ngModel)]="datos.fnac"
+              type="date"
+              placeholder="Ingrese fecha nacimiento"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Sede</ion-label>
+            <ion-select [(ngModel)]="datos.sede" placeholder="Selecciona sede">
+              <ion-select-option *ngFor="let sede of sedes" [value]="sede">{{sede}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked">Tipo usuario</ion-label>
+            <ion-select [(ngModel)]="datos.perfil" placeholder="Selecciona tipo">
+              <ion-select-option value="conductor">Conductor</ion-select-option>
+              <ion-select-option value="pasajero">Pasajero</ion-select-option>
+            </ion-select>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input
+            [(ngModel)]="datos.password"
+              type="password"
+              placeholder="Ingrese contraseña"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked">Repita Contraseña</ion-label>
+            <ion-input
+              type="password"
+              placeholder="Ingrese nuevamente contraseña"
+              [(ngModel)]="verificar_password"
+              [ngModelOptions]="{standalone: 'true'}"  trim
+            ></ion-input>
+          </ion-item>
+        </ion-list>
         <ion-button class="sign-btn" type="submit" (click)="registrar()" >REGISTRAR</ion-button>
         <ion-button class="sign-btn" type="reset" class="login-btn">LIMPIAR</ion-button>
         

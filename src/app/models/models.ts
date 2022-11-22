@@ -1,4 +1,5 @@
 export interface UserI{
+    image: any;
     rut: string;
     nombre: string;
     p_apellido: string;

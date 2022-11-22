@@ -67,16 +67,6 @@ export class FirebaseService {
     }
   }
 
-  login(email, password): boolean{
-    for(let u of this.datos){
-      if(u.email == email && u.password == password){
-        this.isAuthenticated.next(true);
-        return true;
-      }
-    }
-    return false;
-  }
-
 
   createDoc(data: any, path: string, id: string){
     const collection = this.fire.collection(path);

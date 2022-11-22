@@ -93,3 +93,47 @@ ion-toolbar{
     font-family: 'Pacifico', cursive;
     --background: url(/assets/img/banner.png) no-repeat center/cover fixed;
   }
+
+.avatar {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 50px;
+}
+img {
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    bottom: calc(-1*(80px + 4px));
+    border: 8px solid #9Dc912;
+    background-color: #fff;
+}
+    
+
+
+.badge{
+    display: inline;
+    float: right;
+    margin: 0;
+}
+
+
+.avatar_2 {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    margin: -182px auto;
+    margin-left: 40px;
+}
+
+.formulario{
+    top: 10%;
+}
+
+.ion-inherit-color{
+    
+    font-size: medium;
+    color: #012c56;
+    text-align: center;
+}

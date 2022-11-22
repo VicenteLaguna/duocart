@@ -3,7 +3,7 @@
     <div class="header">
       <div class="avatar">
         <ion-avatar class="avatar">
-          <ion-img class="pic" src="assets/img/EgAI3HLXsAAsWVb.jpg"></ion-img>
+          <ion-img [src]="info.image"></ion-img>
         </ion-avatar>
       </div>
     </div>
@@ -23,8 +23,8 @@
       <br>
   </ion-card>
   <div class="sign-btn-wrap">
-    <ion-button size="small" expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
-    <ion-button size="small" expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
-    <ion-button size="small" expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
+    <ion-button  expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
+    <ion-button  expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
+    <ion-button  expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
   </div>
 </ion-content>
