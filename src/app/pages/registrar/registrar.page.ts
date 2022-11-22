@@ -89,7 +89,7 @@ export class RegistrarPage implements OnInit {
   async registrar(){
     this.interaction.presentLoading('Creando usuario...')
     const path='Fotos'
-    const name = 'prueba';
+    const name = this.datos.nombre;
     const resp = await this.fireStorageService.uploadImage(this.newFile,path,name);
     this.datos.image = resp;
 
