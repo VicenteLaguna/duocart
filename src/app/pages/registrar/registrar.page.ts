@@ -87,12 +87,6 @@ export class RegistrarPage implements OnInit {
   // }
 
   async registrar(){
-    this.interaction.presentLoading('Creando usuario...')
-    const path='Fotos'
-    const name = this.datos.nombre;
-    const resp = await this.fireStorageService.uploadImage(this.newFile,path,name);
-    this.datos.image = resp;
-
     if (!this.validaciones.validarRut(this.datos.rut)) {
       this.interaction.presentToast('Rut invalido');
       return;
@@ -106,18 +100,24 @@ export class RegistrarPage implements OnInit {
       return;
     }
     console.log('usuario',this.datos);
+    this.interaction.presentLoading('Creando usuario...')
     const res = await this.auth.registrarUser(this.datos).catch(error =>{
       this.interaction.closeLoading();
       this.interaction.presentToast('Error');
       console.log('error');
     })
     if (res){
+      this.interaction.presentLoading('Creando usuario...')
       console.log('exito al crear usuario');
       this.interaction.closeLoading();
       const path = 'Usuarios';
       const id = res.user.uid;
       this.datos.uid = id;
       this.datos.password = null;
+      const pat='Fotos'
+      const name = this.datos.uid;
+      const resp = await this.fireStorageService.uploadImage(this.newFile,pat,name);
+      this.datos.image = resp;
       await this.fire.createDoc(this.datos,path,id)
       this.interaction.closeLoading();
       this.interaction.presentToast('Usuario registrado con éxito!');
