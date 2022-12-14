@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Información de viaje</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink='/home/viajes' >cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="map"></div>
+  <ion-card class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label  position="stacked">Hora de salida</ion-label>
+            <ion-input disabled="true" [(ngModel)]="tarifa.hora_salida" type="time">{{tarifa.hora_salida}} </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Puestos  disponible</ion-label>
+            <ion-select disabled="true" [(ngModel)]="tarifa.puestos_disp" >
+              <ion-select-option >1</ion-select-option>
+              <ion-select-option >2</ion-select-option>
+              <ion-select-option >3</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label  position="stacked">Costo del viaje</ion-label>
+            <ion-input disabled="true" [(ngModel)]="tarifa.precio" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="sign-btn" expand="full" shape="round" (click)="aceptarViaje()">Aceptar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

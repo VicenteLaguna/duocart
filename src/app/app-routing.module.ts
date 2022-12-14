@@ -30,8 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
   {
-    path: 'administrar',
-    loadChildren: () => import('./pages/administrar/administrar.module').then( m => m.AdministrarPageModule)
+    path: 'info-viaje',
+    loadChildren: () => import('./pages/info-viaje/info-viaje.module').then( m => m.InfoViajePageModule),
+    canActivate: [AngularFireAuthGuard]
+
   },
   {
     path: '**',

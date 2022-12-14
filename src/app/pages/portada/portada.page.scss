@@ -10,7 +10,14 @@ ion-card{
     text-align: center;
     font-size: xx-small;
     img{
-        max-width: 80%;
+        padding: 20px;
+        width: 350px;
+        height: 250px;
         text-align: center;
     }
+}
+
+.img-col{
+    width: 250px;
+    height: 250px;
 }

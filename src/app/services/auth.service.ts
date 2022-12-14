@@ -38,5 +38,9 @@ async getUid(){
     return null;
   }
 }
+
+async requestPassword(email: string){
+    return await this.afAuth.sendPasswordResetEmail(email);
+}
 }
 

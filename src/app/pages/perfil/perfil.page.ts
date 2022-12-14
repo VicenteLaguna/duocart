@@ -23,7 +23,9 @@ export class PerfilPage implements OnInit {
     private fire : FirebaseService,
     private alertController : AlertController,
     public fireStorageService: FirestorageService) { }
+    
 
+    newFile = '';
     uid: string = null;
     info: UserI = null;
 
@@ -111,6 +113,24 @@ export class PerfilPage implements OnInit {
     await alert.present();
   }
 
+  async newImageUpload(event: any){
+    console.log(event);
+    if(event.target.files && event.target.files[0]){
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image) =>{
+        this.newImage = image.target.result as string;
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
 
+  async guardarFoto(){
+    this.interaction.presentLoading('Subiendo Foto...');
+    const path = 'Usuarios'
+    const name = 'FotoPerfil'
+    const res = await this.fireStorageService.uploadImage(this.newFile, path, name);
+    this.info.image = res;
+  }
 }

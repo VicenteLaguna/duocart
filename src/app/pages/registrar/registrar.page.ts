@@ -32,8 +32,11 @@ export class RegistrarPage implements OnInit {
   //   });
 
   sedes = Sedes;
+
   newImage = '';
+
   newFile = '';
+  
   datos: UserI ={
     image: null,
     rut: null,

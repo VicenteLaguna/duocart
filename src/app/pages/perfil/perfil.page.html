@@ -3,28 +3,74 @@
     <div class="header">
       <div class="avatar">
         <ion-avatar class="avatar">
-          <ion-img [src]="info.image"></ion-img>
+          <ion-button size="small" class="badge" color="warning">
+            <label for="file-upload">
+              <ion-icon name="create-outline"></ion-icon>
+            </label>
+            <input (change)="newImageUpload($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
+          </ion-button>
+          <ion-img *ngIf="!newImage" class="profile_img" src="assets/img/EgAI3HLXsAAsWVb.jpg"></ion-img>
+          <ion-img class="profile_img" [src]="newImage"></ion-img>
         </ion-avatar>
       </div>
     </div>
   </div>
   <ion-card class="card-body" *ngIf="info">
-      <ion-label class="misDatos">Mis datos</ion-label>
-      <br>
-      <ion-label class="playername">Nombre: {{info.nombre}} {{info.p_apellido}}</ion-label>
-      <br>
-      <ion-label class="country">Correo: {{info.correo}} </ion-label>
-      <br>
-      <ion-label class="country">Perfil: {{info.perfil}} </ion-label>
-      <br>
-      <ion-label class="country">Sede: {{info.sede}} </ion-label>
-      <br>
-      <ion-label class="country">Fecha de nacimiento: {{info.fnac}} </ion-label>
-      <br>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: center;">
+          <ion-label class="misDatos">Mis datos</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="playername">Nombre: {{info.nombre}} {{info.p_apellido}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="country">Correo: {{info.correo}} </ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="country">Perfil: {{info.perfil}} </ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="country">Sede: {{info.sede}} </ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="country">Fecha de nacimiento: {{info.fnac}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
-  <div class="sign-btn-wrap">
-    <ion-button  expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
-    <ion-button  expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
-    <ion-button  expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  expand="full" shape="round" fill="solid" color="primary">Nuestro Facebook</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button  expand="full" shape="round" fill="solid" color="secondary">Duoc web</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button  expand="full" (click)="logout()" shape="round" fill="solid" class="sign-btn">Cerrar sesión</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

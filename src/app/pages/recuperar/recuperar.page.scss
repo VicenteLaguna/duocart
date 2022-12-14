@@ -6,13 +6,11 @@ ion-item{
     --highlight-color-focused:#1248a0;
     --padding-start:0;
     --inner-padding-end:0;
-
-
-
-    font-size: 12px;
     
     ion-input{
-        color: #647b9d;
+        font-weight: bold;
+        font-size: large;
+        color: black;
     }
 
     ion-icon {

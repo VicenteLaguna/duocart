@@ -1,18 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Recuperación</ion-title>
+    <ion-title>Recuper Contraseña</ion-title>
     <ion-back-button slot="start"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <ion-card>
-  <ion-item>
-    <ion-input placeholder="Ingrese Correo" type="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <div>
-    <ion-button expand="full" shape="round" fill="solid" class="sign-btn" (click)="recuperar()" [disabled]="!email.includes('@duocuc.cl')">Recuperar</ion-button>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="padding: 50px; ">
+        <ion-img src="/assets/icon/reset-password.png"></ion-img>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-label style="font-size: large; color: #012c56 ; font-weight: bold;" >Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="padding-top: 10%;">
+        <ion-item>
+          <ion-input placeholder="Ingresa tu correo aquí" type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col style="padding-top: 5%;">
+        <ion-button expand="full" shape="round" fill="solid" class="sign-btn" (click)="resetPassword()">Restablecer</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-card>
 </ion-content>

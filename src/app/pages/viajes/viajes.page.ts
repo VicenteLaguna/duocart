@@ -3,6 +3,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { tarifas } from 'src/app/models/models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
+
+
 @Component({
   selector: 'app-viajes',
   templateUrl: './viajes.page.html',
@@ -22,17 +24,13 @@ export class ViajesPage implements OnInit {
 
   //tarifa: any[]=[];
 
-  isModalOpen = false;
-
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
 
   constructor(private fireService: FirebaseService, private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getResultados();
   }
+
 
   // listar(){
   //   this.fireService.getDatos('viajes').subscribe(
@@ -49,7 +47,7 @@ export class ViajesPage implements OnInit {
   // }
 
   verViaje(tarifa: tarifas){
-    this.isModalOpen=true;
+    this.router.navigate(['/info-viaje'])
     console.log('editar --', tarifa);
     this.tarifa = tarifa;
   }
@@ -60,7 +58,6 @@ export class ViajesPage implements OnInit {
       this.tarifas = res;
     });
   }
-  
 
 }
 

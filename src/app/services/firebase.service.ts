@@ -93,5 +93,8 @@ export class FirebaseService {
   updateDoc(path: string, id: string, data: any){
     return this.fire.collection(path).doc(id).update(data);
   }
+
+
+
 }
 

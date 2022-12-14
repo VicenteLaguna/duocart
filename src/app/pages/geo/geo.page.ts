@@ -37,6 +37,8 @@ export class GeoPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
+  ocultarElemento = true;
+
   constructor(private activatedRoute: ActivatedRoute,
      private usuarioService: UsuarioService,
      private router: Router, 
@@ -48,7 +50,7 @@ export class GeoPage implements OnInit {
   async ngOnInit() {
     await this.cargarMapa();
     this.autocompletado(this.map, this.marker);
-    this.getResultados();
+    this.loadViaje();
   }
   
   
@@ -118,6 +120,7 @@ export class GeoPage implements OnInit {
     });
   }
   calcularRuta(){
+    this.isModalOpen = true;
     var place = this.search.getPlace().geometry.location;
     
     var request = {
@@ -143,6 +146,7 @@ export class GeoPage implements OnInit {
   async agregarViaje(){
     this.fireService.agregar('viajes',this.tarifa)
     this.interaction.presentToast('Viaje creado con éxito');
+
   }
 
   getResultados(){
@@ -169,6 +173,7 @@ export class GeoPage implements OnInit {
     this.interaction.presentToast('Viaje creado!');
     this.interaction.closeLoading();
     this.isModalOpen = false;
+    this.ocultarElemento = false;
   }
 
   editar(tarifa: tarifas){
@@ -185,6 +190,7 @@ export class GeoPage implements OnInit {
       await this.interaction.presentLoading('Cancelando...');
       this.fireService.deleteDoc(path,this.tarifa.id);
       this.isModalOpen=false;
+      this.ocultarElemento = true;
       this.interaction.closeLoading();
       this.interaction.presentToast('Viaje cancelado');
 

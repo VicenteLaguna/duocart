@@ -11,8 +11,6 @@ ion-content{
     }
     #indicaciones{
         font-size: small;
-        padding: 10px;
-        width: 100%;
         height: 40%;
         overflow-y: auto;
         display: block;
@@ -46,6 +44,7 @@ ion-card{
         font-weight: bold;
     }
     .info_viaje{
+        float: right;
         color: royalblue;
     }
     .sign-btn{
@@ -56,4 +55,7 @@ ion-card{
 
 .modal-footer{
     margin-top: 115%;
+}
+.adp-text{
+    background-color: black;
 }
